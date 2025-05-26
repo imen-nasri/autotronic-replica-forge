@@ -1,7 +1,7 @@
 
 import { useState } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
-// Options (dans une vraie app, récupérés d'une API)
 const marques = ["Audi", "BMW", "Peugeot"];
 const modeles: { [key: string]: string[] } = {
   Audi: ["A3", "A4", "A6"],
@@ -20,63 +20,68 @@ const Simulator = () => {
   const [modele, setModele] = useState("");
   const [mot, setMot] = useState("");
 
-  // Met à jour modèles selon la marque
   const handleMarque = (val: string) => {
     setMarque(val);
     setModele("");
     setMot("");
   };
 
-  // Met à jour motorisation selon le modèle
   const handleModele = (val: string) => {
     setModele(val);
     setMot("");
   };
 
   return (
-    <div className="absolute right-10 top-[calc(42%)] translate-y-[-50%] bg-white rounded-xl shadow-lg px-6 py-6 z-20 min-w-[440px] w-[440px] max-w-full animate-fade-in font-sans">
-      <div className="grid grid-cols-3 gap-2 mb-4">
-        <select
-          className="border border-gray-200 rounded-lg px-4 py-3 text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-primaryRed appearance-none"
-          value={marque}
-          onChange={e => handleMarque(e.target.value)}
+    <Card className="w-full max-w-md rounded-2xl shadow-xl border-[1.5px] border-primaryRed/20 animate-fade-in bg-white/95 backdrop-blur">
+      <CardHeader>
+        <CardTitle className="font-extrabold text-primaryRed text-xl">
+          Simulateur de performance
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2 mb-4">
+          <select
+            className="border border-gray-200 rounded-lg px-4 py-3 text-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-primaryRed disabled:bg-gray-50 transition"
+            value={marque}
+            onChange={e => handleMarque(e.target.value)}
+          >
+            <option value="">Marque</option>
+            {marques.map(m => (
+              <option key={m} value={m}>{m}</option>
+            ))}
+          </select>
+          <select
+            className="border border-gray-200 rounded-lg px-4 py-3 text-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-primaryRed disabled:bg-gray-50 transition"
+            value={modele}
+            onChange={e => handleModele(e.target.value)}
+            disabled={!marque}
+          >
+            <option value="">Modèle</option>
+            {marque && modeles[marque]?.map(mod => (
+              <option key={mod} value={mod}>{mod}</option>
+            ))}
+          </select>
+          <select
+            className="border border-gray-200 rounded-lg px-4 py-3 text-gray-700 font-semibold focus:outline-none focus:ring-2 focus:ring-primaryRed disabled:bg-gray-50 transition"
+            value={mot}
+            onChange={e => setMot(e.target.value)}
+            disabled={!modele}
+          >
+            <option value="">Motorisation</option>
+            {modele && motorisations[modele]?.map(motor => (
+              <option key={motor} value={motor}>{motor}</option>
+            ))}
+          </select>
+        </div>
+        <button
+          className="w-full bg-primaryRed text-white font-extrabold text-base py-3 rounded-lg shadow-md hover:bg-[#d32f2f] hover:scale-105 transition"
+          onClick={() => alert(`Recherche : ${marque} / ${modele} / ${mot}`)}
+          disabled={!(marque && modele && mot)}
         >
-          <option value="">Marque</option>
-          {marques.map(m => (
-            <option key={m} value={m}>{m}</option>
-          ))}
-        </select>
-        <select
-          className="border border-gray-200 rounded-lg px-4 py-3 text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-primaryRed appearance-none"
-          value={modele}
-          onChange={e => handleModele(e.target.value)}
-          disabled={!marque}
-        >
-          <option value="">Modèle</option>
-          {marque && modeles[marque]?.map(mod => (
-            <option key={mod} value={mod}>{mod}</option>
-          ))}
-        </select>
-        <select
-          className="border border-gray-200 rounded-lg px-4 py-3 text-gray-700 font-medium focus:outline-none focus:ring-2 focus:ring-primaryRed appearance-none"
-          value={mot}
-          onChange={e => setMot(e.target.value)}
-          disabled={!modele}
-        >
-          <option value="">Motorisation</option>
-          {modele && motorisations[modele]?.map(motor => (
-            <option key={motor} value={motor}>{motor}</option>
-          ))}
-        </select>
-      </div>
-      <button
-        className="w-full bg-primaryRed text-white font-bold text-base py-3 rounded-lg shadow hover:bg-[#d32f2f] transition"
-        onClick={() => alert(`Recherche : ${marque} / ${modele} / ${mot}`)}
-        disabled={!(marque && modele && mot)}
-      >
-        Rechercher
-      </button>
-    </div>
+          Rechercher
+        </button>
+      </CardContent>
+    </Card>
   );
 };
 
