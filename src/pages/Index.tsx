@@ -2,7 +2,6 @@
 import Header from "@/components/Header";
 import Simulator from "@/components/Simulator";
 
-// Hero BG placeholder
 const HERO_BG = "/lovable-uploads/f8b0ae2c-9883-42d5-a018-69cc5dd23719.png";
 
 const Index = () => {
@@ -11,7 +10,7 @@ const Index = () => {
       <Header />
       {/* HERO SECTION */}
       <section
-        className="relative overflow-hidden flex flex-col lg:flex-row items-center lg:items-stretch justify-center lg:justify-between py-10 lg:py-0"
+        className="relative overflow-hidden flex flex-col-reverse lg:flex-row items-center lg:items-center justify-center py-10 lg:py-16"
         style={{
           minHeight: 530,
           background: `linear-gradient(90deg, rgba(229,57,53,0.15) 0%,rgba(36,38,43,0.12) 100%), url(${HERO_BG}) right/cover no-repeat`,
@@ -34,7 +33,7 @@ const Index = () => {
           </a>
         </div>
         {/* RIGHT: Simulator */}
-        <div className="flex-1 flex items-center justify-center mt-8 lg:mt-0 px-4 lg:px-0">
+        <div className="flex-1 flex items-center justify-center mt-0 mb-8 lg:mb-0 px-4 lg:px-0">
           <Simulator />
         </div>
       </section>
