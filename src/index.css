@@ -1,6 +1,14 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Add this custom utility to make border-border class available */
+@layer utilities {
+  .border-border {
+    border-color: hsl(var(--border));
+  }
+}
 
 @layer base {
   :root {
