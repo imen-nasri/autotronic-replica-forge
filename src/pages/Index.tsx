@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import Simulator from "@/components/Simulator";
 import ServicesSection from "@/components/ServicesSection";
@@ -14,31 +13,33 @@ const Index = () => {
       <Header />
       
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden flex flex-col-reverse lg:flex-row items-center justify-between py-16 lg:py-20 min-h-[700px] bg-gradient-to-br from-gray-50 to-white">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
+      <section className="relative overflow-hidden flex flex-col-reverse lg:flex-row items-center justify-between py-16 lg:py-20 min-h-[700px] bg-cover bg-center bg-no-repeat" style={{
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('https://images.unsplash.com/photo-1486496572940-2bb2341fdbdf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')`
+      }}>
+        {/* Background Pattern - keeping for additional visual interest */}
+        <div className="absolute inset-0 opacity-10">
           <div className="absolute top-10 left-10 w-32 h-32 bg-primaryRed rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-20 w-40 h-40 bg-primaryRed rounded-full blur-3xl"></div>
         </div>
         
         {/* LEFT: Title and CTA */}
         <div className="flex-1 max-w-2xl px-6 lg:px-12 z-10">
-          <div className="inline-flex items-center bg-primaryRed/10 text-primaryRed px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          <div className="inline-flex items-center bg-primaryRed/10 text-primaryRed px-4 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm border border-primaryRed/20">
             ⚡ Spécialiste depuis 15 ans
           </div>
-          <h1 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
+          <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight drop-shadow-lg">
             Autotronic performance,{" "}
-            <span className="block text-primaryRed bg-gray-100 px-4 py-2 inline-block transform -rotate-1 shadow-lg rounded-lg">
+            <span className="block text-primaryRed bg-white/90 px-4 py-2 inline-block transform -rotate-1 shadow-lg rounded-lg">
               spécialiste
             </span>
             <span className="block mt-2">
               reprogrammation moteur à Sainte Geneviève (91)
             </span>
           </h1>
-          <p className="text-xl lg:text-2xl text-gray-700 font-semibold mb-8 leading-relaxed">
+          <p className="text-xl lg:text-2xl text-white font-semibold mb-8 leading-relaxed drop-shadow-md">
             Plus de 15 ans d'expérience dans la reprogrammation moteur.
             <br />
-            <span className="text-gray-600">Gagnez en puissance et économisez du carburant.</span>
+            <span className="text-gray-200">Gagnez en puissance et économisez du carburant.</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
@@ -49,7 +50,7 @@ const Index = () => {
             </a>
             <a
               href="#services"
-              className="inline-block bg-white border-2 border-primaryRed text-primaryRed rounded-lg px-8 py-4 text-xl font-black hover:bg-primaryRed hover:text-white transition-all duration-300 text-center"
+              className="inline-block bg-white/90 backdrop-blur-sm border-2 border-white text-gray-900 rounded-lg px-8 py-4 text-xl font-black hover:bg-white hover:scale-105 transition-all duration-300 text-center"
             >
               Nos Services
             </a>
