@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChevronDown } from "lucide-react";
 
-// Marque, Modèle, Motorisation data (to be expanded)
 const marques = ["Audi", "BMW", "Peugeot"];
 const modeles: { [key: string]: string[] } = {
   Audi: ["A3", "A4", "A6"],
@@ -32,86 +31,85 @@ const Simulator = () => {
     setMot("");
   };
 
-  // For button animation/UX; optionally expand features later
   const disabled = !(marque && modele && mot);
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <Card className="w-full max-w-xl bg-white/95 border-2 border-primaryRed/25 shadow-2xl rounded-3xl p-0 md:px-8 py-6 
-        animate-fade-in backdrop-blur-md md:mt-8">
-        <CardHeader className="pb-3 px-0">
-          <CardTitle className="text-2xl md:text-3xl font-black text-primaryRed drop-shadow-sm tracking-wide text-center">
-            Simulateur de performance
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="px-0">
-          <form
-            className="flex flex-col gap-6"
-            onSubmit={e => {
-              e.preventDefault();
-              alert(`Recherche : ${marque} / ${modele} / ${mot}`);
-            }}
-          >
-            {/* Steps */}
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-              {/* Marque */}
-              <div className="relative group">
-                <select
-                  className="peer border-2 border-gray-200 rounded-xl px-5 py-3 w-full text-gray-800 text-base font-bold focus:outline-none focus:ring-2 focus:ring-primaryRed focus:border-primaryRed appearance-none bg-gray-50 transition"
-                  value={marque}
-                  onChange={e => handleMarque(e.target.value)}
-                >
-                  <option value="">Marque</option>
-                  {marques.map(m => (
-                    <option key={m} value={m}>{m}</option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
-              </div>
-              {/* Modele */}
-              <div className="relative group">
-                <select
-                  className="peer border-2 border-gray-200 rounded-xl px-5 py-3 w-full text-gray-800 text-base font-bold focus:outline-none focus:ring-2 focus:ring-primaryRed focus:border-primaryRed appearance-none bg-gray-50 transition"
-                  value={modele}
-                  onChange={e => handleModele(e.target.value)}
-                  disabled={!marque}
-                >
-                  <option value="">Modèle</option>
-                  {marque && modeles[marque]?.map(mod => (
-                    <option key={mod} value={mod}>{mod}</option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
-              </div>
-              {/* Motorisation */}
-              <div className="relative group">
-                <select
-                  className="peer border-2 border-gray-200 rounded-xl px-5 py-3 w-full text-gray-800 text-base font-bold focus:outline-none focus:ring-2 focus:ring-primaryRed focus:border-primaryRed appearance-none bg-gray-50 transition"
-                  value={mot}
-                  onChange={e => setMot(e.target.value)}
-                  disabled={!modele}
-                >
-                  <option value="">Motorisation</option>
-                  {modele && motorisations[modele]?.map(motor => (
-                    <option key={motor} value={motor}>{motor}</option>
-                  ))}
-                </select>
-                <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" size={18} />
-              </div>
+    <Card className="w-full max-w-lg bg-white shadow-2xl rounded-2xl overflow-hidden border-none">
+      <CardHeader className="bg-white text-center py-6">
+        <CardTitle className="text-2xl lg:text-3xl font-black text-primaryRed">
+          Simulateur de performance
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-8 bg-white">
+        <form
+          className="space-y-6"
+          onSubmit={e => {
+            e.preventDefault();
+            alert(`Recherche : ${marque} / ${modele} / ${mot}`);
+          }}
+        >
+          {/* Dropdowns */}
+          <div className="grid grid-cols-1 gap-4">
+            {/* Marque */}
+            <div className="relative">
+              <select
+                className="w-full border-2 border-gray-300 rounded-lg px-4 py-4 text-gray-700 font-semibold focus:outline-none focus:border-primaryRed appearance-none bg-gray-50 text-lg"
+                value={marque}
+                onChange={e => handleMarque(e.target.value)}
+              >
+                <option value="">Marque</option>
+                {marques.map(m => (
+                  <option key={m} value={m}>{m}</option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
             </div>
-            {/* CTA */}
-            <Button
-              type="submit"
-              className={`w-full bg-primaryRed font-black text-lg py-3 rounded-xl shadow-lg hover:bg-[#d32f2f] hover:scale-105 transition active:scale-95 ${disabled ? 'opacity-60 pointer-events-none' : ''}`}
-              disabled={disabled}
-              size="lg"
-            >
-              Rechercher
-            </Button>
-          </form>
-        </CardContent>
-      </Card>
-    </div>
+            
+            {/* Modele */}
+            <div className="relative">
+              <select
+                className="w-full border-2 border-gray-300 rounded-lg px-4 py-4 text-gray-700 font-semibold focus:outline-none focus:border-primaryRed appearance-none bg-gray-50 text-lg disabled:opacity-50"
+                value={modele}
+                onChange={e => handleModele(e.target.value)}
+                disabled={!marque}
+              >
+                <option value="">Modèle</option>
+                {marque && modeles[marque]?.map(mod => (
+                  <option key={mod} value={mod}>{mod}</option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
+            </div>
+            
+            {/* Motorisation */}
+            <div className="relative">
+              <select
+                className="w-full border-2 border-gray-300 rounded-lg px-4 py-4 text-gray-700 font-semibold focus:outline-none focus:border-primaryRed appearance-none bg-gray-50 text-lg disabled:opacity-50"
+                value={mot}
+                onChange={e => setMot(e.target.value)}
+                disabled={!modele}
+              >
+                <option value="">Motorisation</option>
+                {modele && motorisations[modele]?.map(motor => (
+                  <option key={motor} value={motor}>{motor}</option>
+                ))}
+              </select>
+              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
+            </div>
+          </div>
+          
+          {/* CTA Button */}
+          <Button
+            type="submit"
+            className={`w-full bg-primaryRed hover:bg-red-600 font-black text-white text-xl py-6 rounded-lg transition-all duration-300 ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
+            disabled={disabled}
+          >
+            Rechercher
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   );
 };
+
 export default Simulator;
