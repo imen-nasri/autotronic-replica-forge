@@ -1,4 +1,5 @@
 
+import { ChevronDown } from "lucide-react";
 import Logo from "./Logo";
 
 const menuItems = [
