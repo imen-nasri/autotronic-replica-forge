@@ -2,36 +2,55 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronDown } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const marques = ["Audi", "BMW", "Peugeot"];
+const marques = ["Alfa Romeo", "Audi", "BMW", "Mercedes", "Peugeot", "Renault", "Volkswagen"];
+
 const modeles: { [key: string]: string[] } = {
-  Audi: ["A3", "A4", "A6"],
-  BMW: ["320i", "330d"],
-  Peugeot: ["208", "308"],
+  "Alfa Romeo": ["147", "156", "159", "166", "4C", "Brera", "CrossWagon", "Giulia", "Giulietta", "GT", "MiTo", "Spider"],
+  "Audi": ["A1", "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "TT"],
+  "BMW": ["Série 1", "Série 3", "Série 5", "Série 7", "X1", "X3", "X5", "Z4"],
+  "Mercedes": ["Classe A", "Classe B", "Classe C", "Classe E", "Classe S", "CLA", "GLA", "GLB"],
+  "Peugeot": ["206", "207", "208", "307", "308", "407", "508", "2008", "3008", "5008"],
+  "Renault": ["Clio", "Megane", "Scenic", "Laguna", "Espace", "Captur", "Kadjar"],
+  "Volkswagen": ["Golf", "Polo", "Passat", "Tiguan", "Touran", "Jetta", "Arteon"]
 };
-const motorisations: { [key: string]: string[] } = {
-  "A6": ["2.0 TDi DPF 140ch Diesel", "2.7 V6 TDi 180ch Diesel"],
-  "320i": ["2.0 Turbo Essence 170ch"],
-  "208": ["1.2 PureTech 110ch Essence"],
+
+const versions: { [key: string]: string[] } = {
+  "147": ["1.6 TS 120ch", "2.0 TS 150ch", "1.9 JTD 115ch", "1.9 JTD 140ch"],
+  "A3": ["1.4 TFSI 125ch", "1.8 TFSI 180ch", "2.0 TDI 140ch", "2.0 TDI 170ch"],
+  "Série 3": ["320i 170ch", "325i 218ch", "320d 163ch", "330d 231ch"],
+  "208": ["1.2 PureTech 82ch", "1.2 PureTech 110ch", "1.6 HDI 92ch", "1.6 HDI 115ch"]
 };
 
 const Simulator = () => {
   const [marque, setMarque] = useState("");
   const [modele, setModele] = useState("");
-  const [mot, setMot] = useState("");
+  const [version, setVersion] = useState("");
 
-  const handleMarque = (val: string) => {
-    setMarque(val);
+  const handleMarqueChange = (value: string) => {
+    setMarque(value);
     setModele("");
-    setMot("");
-  };
-  const handleModele = (val: string) => {
-    setModele(val);
-    setMot("");
+    setVersion("");
   };
 
-  const disabled = !(marque && modele && mot);
+  const handleModeleChange = (value: string) => {
+    setModele(value);
+    setVersion("");
+  };
+
+  const handleVersionChange = (value: string) => {
+    setVersion(value);
+  };
+
+  const isDisabled = !(marque && modele && version);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isDisabled) {
+      alert(`Recherche pour: ${marque} ${modele} - ${version}`);
+    }
+  };
 
   return (
     <Card className="w-full max-w-lg bg-white shadow-2xl rounded-2xl overflow-hidden border-none">
@@ -41,68 +60,84 @@ const Simulator = () => {
         </CardTitle>
       </CardHeader>
       <CardContent className="p-8 bg-white">
-        <form
-          className="space-y-6"
-          onSubmit={e => {
-            e.preventDefault();
-            alert(`Recherche : ${marque} / ${modele} / ${mot}`);
-          }}
-        >
-          {/* Dropdowns */}
-          <div className="grid grid-cols-1 gap-4">
-            {/* Marque */}
-            <div className="relative">
-              <select
-                className="w-full border-2 border-gray-300 rounded-lg px-4 py-4 text-gray-700 font-semibold focus:outline-none focus:border-primaryRed appearance-none bg-gray-50 text-lg"
-                value={marque}
-                onChange={e => handleMarque(e.target.value)}
-              >
-                <option value="">Marque</option>
-                {marques.map(m => (
-                  <option key={m} value={m}>{m}</option>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Marque Dropdown */}
+          <div className="space-y-2">
+            <Select value={marque} onValueChange={handleMarqueChange}>
+              <SelectTrigger className="w-full h-14 border-2 border-gray-300 rounded-lg px-4 text-gray-700 font-semibold focus:border-primaryRed bg-gray-50 text-lg">
+                <SelectValue placeholder="Marque" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60">
+                {marques.map((m) => (
+                  <SelectItem 
+                    key={m} 
+                    value={m}
+                    className="text-gray-700 font-medium py-3 px-4 hover:bg-primaryRed/10 hover:text-primaryRed cursor-pointer"
+                  >
+                    {m}
+                  </SelectItem>
                 ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
-            </div>
-            
-            {/* Modele */}
-            <div className="relative">
-              <select
-                className="w-full border-2 border-gray-300 rounded-lg px-4 py-4 text-gray-700 font-semibold focus:outline-none focus:border-primaryRed appearance-none bg-gray-50 text-lg disabled:opacity-50"
-                value={modele}
-                onChange={e => handleModele(e.target.value)}
-                disabled={!marque}
-              >
-                <option value="">Modèle</option>
-                {marque && modeles[marque]?.map(mod => (
-                  <option key={mod} value={mod}>{mod}</option>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Modele Dropdown */}
+          <div className="space-y-2">
+            <Select 
+              value={modele} 
+              onValueChange={handleModeleChange}
+              disabled={!marque}
+            >
+              <SelectTrigger className="w-full h-14 border-2 border-gray-300 rounded-lg px-4 text-gray-700 font-semibold focus:border-primaryRed bg-gray-50 text-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                <SelectValue placeholder="Modèle" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60">
+                {marque && modeles[marque]?.map((mod) => (
+                  <SelectItem 
+                    key={mod} 
+                    value={mod}
+                    className="text-gray-700 font-medium py-3 px-4 hover:bg-primaryRed/10 hover:text-primaryRed cursor-pointer"
+                  >
+                    {mod}
+                  </SelectItem>
                 ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
-            </div>
-            
-            {/* Motorisation */}
-            <div className="relative">
-              <select
-                className="w-full border-2 border-gray-300 rounded-lg px-4 py-4 text-gray-700 font-semibold focus:outline-none focus:border-primaryRed appearance-none bg-gray-50 text-lg disabled:opacity-50"
-                value={mot}
-                onChange={e => setMot(e.target.value)}
-                disabled={!modele}
-              >
-                <option value="">Motorisation</option>
-                {modele && motorisations[modele]?.map(motor => (
-                  <option key={motor} value={motor}>{motor}</option>
+              </SelectContent>
+            </Select>
+          </div>
+
+          {/* Version Dropdown */}
+          <div className="space-y-2">
+            <Select 
+              value={version} 
+              onValueChange={handleVersionChange}
+              disabled={!modele}
+            >
+              <SelectTrigger className="w-full h-14 border-2 border-gray-300 rounded-lg px-4 text-gray-700 font-semibold focus:border-primaryRed bg-gray-50 text-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                <SelectValue placeholder="Version" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60">
+                {modele && versions[modele]?.map((ver) => (
+                  <SelectItem 
+                    key={ver} 
+                    value={ver}
+                    className="text-gray-700 font-medium py-3 px-4 hover:bg-primaryRed/10 hover:text-primaryRed cursor-pointer"
+                  >
+                    {ver}
+                  </SelectItem>
                 ))}
-              </select>
-              <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 pointer-events-none" size={20} />
-            </div>
+              </SelectContent>
+            </Select>
           </div>
           
-          {/* CTA Button */}
+          {/* Rechercher Button */}
           <Button
             type="submit"
-            className={`w-full bg-primaryRed hover:bg-red-600 font-black text-white text-xl py-6 rounded-lg transition-all duration-300 ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105'}`}
-            disabled={disabled}
+            className={`w-full bg-primaryRed hover:bg-red-600 font-black text-white text-xl py-6 rounded-lg transition-all duration-300 ${
+              isDisabled 
+                ? 'opacity-50 cursor-not-allowed' 
+                : 'hover:scale-105 shadow-xl'
+            }`}
+            disabled={isDisabled}
           >
             Rechercher
           </Button>
