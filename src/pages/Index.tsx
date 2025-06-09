@@ -1,35 +1,27 @@
-
 import Header from "@/components/Header";
 import Simulator from "@/components/Simulator";
-
-const HERO_BG = "/lovable-uploads/f8b0ae2c-9883-42d5-a018-69cc5dd23719.png";
 
 const Index = () => {
   return (
     <div className="min-h-screen w-full font-sans">
       <Header />
       {/* HERO SECTION */}
-      <section
-        className="relative overflow-hidden flex flex-col-reverse lg:flex-row items-center justify-between py-16 lg:py-20 min-h-[600px]"
-        style={{
-          background: `linear-gradient(45deg, rgba(229,57,53,0.9) 0%, rgba(180,40,40,0.95) 50%, rgba(120,20,20,0.9) 100%), url(${HERO_BG}) center/cover no-repeat`,
-        }}
-      >
+      <section className="relative overflow-hidden flex flex-col-reverse lg:flex-row items-center justify-between py-16 lg:py-20 min-h-[600px] bg-white">
         {/* LEFT: Title and CTA */}
         <div className="flex-1 max-w-2xl px-6 lg:px-12 z-10">
-          <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight">
+          <h1 className="text-4xl lg:text-6xl font-black text-gray-900 mb-6 leading-tight">
             Autotronic performance,{" "}
-            <span className="block text-primaryRed bg-white px-4 py-2 inline-block transform -rotate-1 shadow-lg">
+            <span className="block text-primaryRed bg-gray-100 px-4 py-2 inline-block transform -rotate-1 shadow-lg">
               spécialiste
             </span>
             <span className="block mt-2">
               reprogrammation moteur à Sainte Geneviève (91)
             </span>
           </h1>
-          <p className="text-xl lg:text-2xl text-white font-semibold mb-8 leading-relaxed">
+          <p className="text-xl lg:text-2xl text-gray-700 font-semibold mb-8 leading-relaxed">
             Plus de 15 ans d'expérience dans la reprogrammation moteur.
             <br />
-            <span className="text-gray-200">Gagnez en puissance et économisez du carburant.</span>
+            <span className="text-gray-600">Gagnez en puissance et économisez du carburant.</span>
           </p>
           <a
             href="tel:0629631976"
