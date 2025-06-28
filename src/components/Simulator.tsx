@@ -4,52 +4,193 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-const marques = ["Alfa Romeo", "Audi", "BMW", "Mercedes", "Peugeot", "Renault", "Volkswagen"];
-
-const modeles: { [key: string]: string[] } = {
-  "Alfa Romeo": ["147", "156", "159", "166", "4C", "Brera", "CrossWagon", "Giulia", "Giulietta", "GT", "MiTo", "Spider"],
-  "Audi": ["A1", "A3", "A4", "A5", "A6", "A7", "A8", "Q3", "Q5", "Q7", "TT"],
-  "BMW": ["Série 1", "Série 3", "Série 5", "Série 7", "X1", "X3", "X5", "Z4"],
-  "Mercedes": ["Classe A", "Classe B", "Classe C", "Classe E", "Classe S", "CLA", "GLA", "GLB"],
-  "Peugeot": ["206", "207", "208", "307", "308", "407", "508", "2008", "3008", "5008"],
-  "Renault": ["Clio", "Megane", "Scenic", "Laguna", "Espace", "Captur", "Kadjar"],
-  "Volkswagen": ["Golf", "Polo", "Passat", "Tiguan", "Touran", "Jetta", "Arteon"]
-};
-
-const versions: { [key: string]: string[] } = {
-  "147": ["1.6 TS 120ch", "2.0 TS 150ch", "1.9 JTD 115ch", "1.9 JTD 140ch"],
-  "A3": ["1.4 TFSI 125ch", "1.8 TFSI 180ch", "2.0 TDI 140ch", "2.0 TDI 170ch"],
-  "Série 3": ["320i 170ch", "325i 218ch", "320d 163ch", "330d 231ch"],
-  "208": ["1.2 PureTech 82ch", "1.2 PureTech 110ch", "1.6 HDI 92ch", "1.6 HDI 115ch"]
+const carData = {
+  "Alfa Romeo": {
+    "Giulia": {
+      "2.0 Turbo": ["2.0L Turbo I4 200ch", "2.0L Turbo I4 280ch"],
+      "2.9 V6 Quadrifoglio": ["2.9L Twin-Turbo V6 510ch"]
+    },
+    "Stelvio": {
+      "2.0 Turbo": ["2.0L Turbo I4 200ch", "2.0L Turbo I4 280ch"],
+      "2.9 V6 Quadrifoglio": ["2.9L Twin-Turbo V6 510ch"]
+    },
+    "Tonale": {
+      "1.5 Mild Hybrid": ["1.5L Mild Hybrid 130ch"],
+      "1.3 PHEV": ["1.3L Plug-in Hybrid 272ch"],
+      "1.6 Diesel": ["1.6L Diesel 130ch"]
+    }
+  },
+  "Audi": {
+    "A3": {
+      "1.4 TFSI": ["1.4L TFSI 125ch", "1.4L TFSI 150ch"],
+      "2.0 TDI": ["2.0L TDI 140ch", "2.0L TDI 170ch"],
+      "2.0 TFSI": ["2.0L TFSI 190ch", "2.0L TFSI 245ch"]
+    },
+    "A4": {
+      "2.0 TFSI": ["2.0L TFSI 190ch", "2.0L TFSI 245ch"],
+      "2.0 TDI": ["2.0L TDI 150ch", "2.0L TDI 190ch"],
+      "3.0 TFSI": ["3.0L TFSI 340ch"]
+    },
+    "Q3": {
+      "1.5 TFSI": ["1.5L TFSI 150ch"],
+      "2.0 TFSI": ["2.0L TFSI 190ch", "2.0L TFSI 245ch"],
+      "2.0 TDI": ["2.0L TDI 150ch"]
+    }
+  },
+  "BMW": {
+    "Série 3": {
+      "320i": ["2.0L Turbo I4 184ch"],
+      "330i": ["2.0L Turbo I4 258ch"],
+      "320d": ["2.0L Diesel 190ch"],
+      "330d": ["3.0L Diesel 265ch"]
+    },
+    "X3": {
+      "xDrive20i": ["2.0L Turbo I4 184ch"],
+      "xDrive30i": ["2.0L Turbo I4 252ch"],
+      "xDrive20d": ["2.0L Diesel 190ch"],
+      "xDrive30d": ["3.0L Diesel 265ch"]
+    },
+    "Série 5": {
+      "520i": ["2.0L Turbo I4 184ch"],
+      "530i": ["2.0L Turbo I4 252ch"],
+      "520d": ["2.0L Diesel 190ch"],
+      "530d": ["3.0L Diesel 265ch"]
+    }
+  },
+  "Mercedes": {
+    "Classe A": {
+      "A200": ["1.3L Turbo I4 163ch"],
+      "A250": ["2.0L Turbo I4 224ch"],
+      "A180d": ["1.5L Diesel 116ch"],
+      "A200d": ["2.0L Diesel 150ch"]
+    },
+    "Classe C": {
+      "C200": ["1.5L Turbo I4 204ch"],
+      "C300": ["2.0L Turbo I4 258ch"],
+      "C220d": ["2.0L Diesel 200ch"],
+      "C300d": ["2.0L Diesel 265ch"]
+    },
+    "GLC": {
+      "GLC200": ["2.0L Turbo I4 197ch"],
+      "GLC300": ["2.0L Turbo I4 258ch"],
+      "GLC220d": ["2.0L Diesel 194ch"],
+      "GLC300d": ["2.0L Diesel 245ch"]
+    }
+  },
+  "Peugeot": {
+    "208": {
+      "1.2 PureTech": ["1.2L PureTech 75ch", "1.2L PureTech 100ch", "1.2L PureTech 130ch"],
+      "1.5 BlueHDi": ["1.5L BlueHDi 100ch", "1.5L BlueHDi 130ch"],
+      "e-208": ["Electrique 136ch"]
+    },
+    "308": {
+      "1.2 PureTech": ["1.2L PureTech 110ch", "1.2L PureTech 130ch"],
+      "1.6 PureTech": ["1.6L PureTech 180ch"],
+      "1.5 BlueHDi": ["1.5L BlueHDi 130ch"],
+      "PHEV": ["1.6L PHEV 225ch"]
+    },
+    "3008": {
+      "1.2 PureTech": ["1.2L PureTech 130ch"],
+      "1.6 PureTech": ["1.6L PureTech 180ch"],
+      "1.5 BlueHDi": ["1.5L BlueHDi 130ch"],
+      "PHEV": ["1.6L PHEV 300ch"]
+    }
+  },
+  "Renault": {
+    "Clio": {
+      "1.0 TCe": ["1.0L TCe 90ch", "1.0L TCe 100ch"],
+      "1.3 TCe": ["1.3L TCe 130ch", "1.3L TCe 160ch"],
+      "1.5 Blue dCi": ["1.5L Blue dCi 85ch", "1.5L Blue dCi 115ch"],
+      "E-Tech": ["1.6L E-Tech 140ch"]
+    },
+    "Captur": {
+      "1.0 TCe": ["1.0L TCe 90ch", "1.0L TCe 100ch"],
+      "1.3 TCe": ["1.3L TCe 130ch", "1.3L TCe 155ch"],
+      "1.5 Blue dCi": ["1.5L Blue dCi 95ch", "1.5L Blue dCi 115ch"],
+      "E-Tech PHEV": ["1.6L E-Tech PHEV 160ch"]
+    },
+    "Megane": {
+      "1.3 TCe": ["1.3L TCe 140ch", "1.3L TCe 160ch"],
+      "1.5 Blue dCi": ["1.5L Blue dCi 115ch"],
+      "E-Tech Electric": ["Electrique 220ch", "Electrique 300ch"]
+    }
+  },
+  "Volkswagen": {
+    "Golf": {
+      "1.0 TSI": ["1.0L TSI 110ch"],
+      "1.5 TSI": ["1.5L TSI 130ch", "1.5L TSI 150ch"],
+      "2.0 TSI": ["2.0L TSI 245ch GTI", "2.0L TSI 320ch R"],
+      "2.0 TDI": ["2.0L TDI 115ch", "2.0L TDI 150ch"]
+    },
+    "Tiguan": {
+      "1.5 TSI": ["1.5L TSI 130ch", "1.5L TSI 150ch"],
+      "2.0 TSI": ["2.0L TSI 190ch"],
+      "2.0 TDI": ["2.0L TDI 150ch", "2.0L TDI 200ch"],
+      "eHybrid": ["1.4L TSI eHybrid 245ch"]
+    },
+    "Passat": {
+      "1.5 TSI": ["1.5L TSI 150ch"],
+      "2.0 TSI": ["2.0L TSI 190ch"],
+      "2.0 TDI": ["2.0L TDI 150ch", "2.0L TDI 200ch"],
+      "GTE": ["1.4L TSI GTE 218ch"]
+    }
+  }
 };
 
 const Simulator = () => {
   const [marque, setMarque] = useState("");
   const [modele, setModele] = useState("");
   const [version, setVersion] = useState("");
+  const [moteur, setMoteur] = useState("");
 
   const handleMarqueChange = (value: string) => {
     setMarque(value);
     setModele("");
     setVersion("");
+    setMoteur("");
   };
 
   const handleModeleChange = (value: string) => {
     setModele(value);
     setVersion("");
+    setMoteur("");
   };
 
   const handleVersionChange = (value: string) => {
     setVersion(value);
+    setMoteur("");
   };
 
-  const isDisabled = !(marque && modele && version);
+  const handleMoteurChange = (value: string) => {
+    setMoteur(value);
+  };
+
+  const isDisabled = !(marque && modele && version && moteur);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!isDisabled) {
-      alert(`Recherche pour: ${marque} ${modele} - ${version}`);
+      alert(`Simulation pour: ${marque} ${modele} - ${version} - ${moteur}\n\nContacter MH AUTO Performance au 06 29 63 19 76 pour plus d'informations sur la reprogrammation de ce véhicule.`);
     }
+  };
+
+  const getModeles = () => {
+    return marque ? Object.keys(carData[marque as keyof typeof carData] || {}) : [];
+  };
+
+  const getVersions = () => {
+    if (!marque || !modele) return [];
+    const marqueData = carData[marque as keyof typeof carData];
+    return marqueData ? Object.keys(marqueData[modele as keyof typeof marqueData] || {}) : [];
+  };
+
+  const getMoteurs = () => {
+    if (!marque || !modele || !version) return [];
+    const marqueData = carData[marque as keyof typeof carData];
+    if (!marqueData) return [];
+    const modeleData = marqueData[modele as keyof typeof marqueData];
+    if (!modeleData) return [];
+    return modeleData[version as keyof typeof modeleData] || [];
   };
 
   return (
@@ -67,8 +208,8 @@ const Simulator = () => {
               <SelectTrigger className="w-full h-14 border-2 border-gray-300 rounded-lg px-4 text-gray-700 font-semibold focus:border-primaryRed bg-gray-50 text-lg">
                 <SelectValue placeholder="Marque" />
               </SelectTrigger>
-              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60">
-                {marques.map((m) => (
+              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60 z-50">
+                {Object.keys(carData).map((m) => (
                   <SelectItem 
                     key={m} 
                     value={m}
@@ -91,8 +232,8 @@ const Simulator = () => {
               <SelectTrigger className="w-full h-14 border-2 border-gray-300 rounded-lg px-4 text-gray-700 font-semibold focus:border-primaryRed bg-gray-50 text-lg disabled:opacity-50 disabled:cursor-not-allowed">
                 <SelectValue placeholder="Modèle" />
               </SelectTrigger>
-              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60">
-                {marque && modeles[marque]?.map((mod) => (
+              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60 z-50">
+                {getModeles().map((mod) => (
                   <SelectItem 
                     key={mod} 
                     value={mod}
@@ -115,8 +256,8 @@ const Simulator = () => {
               <SelectTrigger className="w-full h-14 border-2 border-gray-300 rounded-lg px-4 text-gray-700 font-semibold focus:border-primaryRed bg-gray-50 text-lg disabled:opacity-50 disabled:cursor-not-allowed">
                 <SelectValue placeholder="Version" />
               </SelectTrigger>
-              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60">
-                {modele && versions[modele]?.map((ver) => (
+              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60 z-50">
+                {getVersions().map((ver) => (
                   <SelectItem 
                     key={ver} 
                     value={ver}
@@ -128,8 +269,32 @@ const Simulator = () => {
               </SelectContent>
             </Select>
           </div>
+
+          {/* Moteur Dropdown */}
+          <div className="space-y-2">
+            <Select 
+              value={moteur} 
+              onValueChange={handleMoteurChange}
+              disabled={!version}
+            >
+              <SelectTrigger className="w-full h-14 border-2 border-gray-300 rounded-lg px-4 text-gray-700 font-semibold focus:border-primaryRed bg-gray-50 text-lg disabled:opacity-50 disabled:cursor-not-allowed">
+                <SelectValue placeholder="Moteur" />
+              </SelectTrigger>
+              <SelectContent className="bg-white border-2 border-gray-200 rounded-lg shadow-xl max-h-60 z-50">
+                {getMoteurs().map((mot) => (
+                  <SelectItem 
+                    key={mot} 
+                    value={mot}
+                    className="text-gray-700 font-medium py-3 px-4 hover:bg-primaryRed/10 hover:text-primaryRed cursor-pointer"
+                  >
+                    {mot}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           
-          {/* Rechercher Button */}
+          {/* Simuler Button */}
           <Button
             type="submit"
             className={`w-full bg-primaryRed hover:bg-red-600 font-black text-white text-xl py-6 rounded-lg transition-all duration-300 ${
@@ -139,7 +304,7 @@ const Simulator = () => {
             }`}
             disabled={isDisabled}
           >
-            Rechercher
+            Simuler la Performance
           </Button>
         </form>
       </CardContent>
