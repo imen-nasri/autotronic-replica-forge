@@ -1,4 +1,3 @@
-
 import { Phone, MapPin, Clock, Facebook, Instagram, Youtube } from "lucide-react";
 import Logo from "./Logo";
 
@@ -13,7 +12,7 @@ const Footer = () => {
               <Logo />
             </div>
             <p className="text-gray-300 leading-relaxed mb-6">
-              Spécialiste en reprogrammation moteur depuis 15 ans. Optimisation, performance et économies pour votre véhicule.
+              MH AUTO Performance - Spécialiste en reprogrammation moteur depuis 15 ans. Optimisation, performance et économies pour votre véhicule.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="w-10 h-10 bg-primaryRed rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors">
@@ -87,7 +86,7 @@ const Footer = () => {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              © 2024 Autotronic Performance. Tous droits réservés.
+              © 2024 MH AUTO Performance. Tous droits réservés.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-primaryRed transition-colors">Mentions Légales</a>

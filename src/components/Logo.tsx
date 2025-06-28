@@ -6,10 +6,10 @@ const Logo = () => (
       <path d="M15 32c10-20 24-20 34 0" stroke="#e53935" strokeWidth="3" fill="none"/>
       <circle cx="19" cy="36" r="3" fill="#e53935"/>
       <circle cx="45" cy="36" r="3" fill="#e53935"/>
-      <text x="32" y="22" textAnchor="middle" fill="#e53935" fontSize="9" fontWeight="900" fontFamily="Montserrat">AUTO</text>
-      <text x="32" y="32" textAnchor="middle" fill="#e53935" fontSize="7" fontWeight="bold" fontFamily="Montserrat">PERF</text>
+      <text x="32" y="20" textAnchor="middle" fill="#e53935" fontSize="8" fontWeight="900" fontFamily="Montserrat">MH</text>
+      <text x="32" y="30" textAnchor="middle" fill="#e53935" fontSize="7" fontWeight="bold" fontFamily="Montserrat">AUTO</text>
     </svg>
-    <span className="font-black text-2xl text-white tracking-wider drop-shadow-lg">Autotronic</span>
+    <span className="font-black text-2xl text-white tracking-wider drop-shadow-lg">MH AUTO Performance</span>
   </div>
 );
 

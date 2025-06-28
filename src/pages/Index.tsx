@@ -1,4 +1,3 @@
-
 import Header from "@/components/Header";
 import Simulator from "@/components/Simulator";
 import ServicesSection from "@/components/ServicesSection";
@@ -31,7 +30,7 @@ const Index = () => {
             ⚡ Vous conduisez, nous optimisons
           </div>
           <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight drop-shadow-lg">
-            Autotronic Performance,{" "}
+            MH AUTO Performance,{" "}
             <span className="block text-primaryRed bg-white/90 px-4 py-2 inline-block transform -rotate-1 shadow-lg rounded-lg">
               spécialiste
             </span>

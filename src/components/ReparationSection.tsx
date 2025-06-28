@@ -1,10 +1,10 @@
 
-import { Engine, Cog, Shield, Wrench } from "lucide-react";
+import { Car, Cog, Shield, Wrench } from "lucide-react";
 
 const services = [
   {
     number: "01",
-    icon: Engine,
+    icon: Car,
     title: "RÉPARATION MOTEUR",
     description: "Diagnostic et réparation complète de votre moteur avec des pièces de qualité"
   },
