@@ -1,3 +1,4 @@
+
 import { Phone, MapPin, Clock, Facebook, Instagram, Youtube } from "lucide-react";
 import Logo from "./Logo";
 
@@ -15,13 +16,13 @@ const Footer = () => {
               MH AUTO Performance - Spécialiste en reprogrammation moteur depuis 15 ans. Optimisation, performance et économies pour votre véhicule.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-primaryRed rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors">
+              <a href="#" className="w-10 h-10 bg-primaryRed rounded-lg flex items-center justify-center hover:bg-yellow-600 transition-colors">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-primaryRed rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors">
+              <a href="#" className="w-10 h-10 bg-primaryRed rounded-lg flex items-center justify-center hover:bg-yellow-600 transition-colors">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="w-10 h-10 bg-primaryRed rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors">
+              <a href="#" className="w-10 h-10 bg-primaryRed rounded-lg flex items-center justify-center hover:bg-yellow-600 transition-colors">
                 <Youtube className="w-5 h-5" />
               </a>
             </div>

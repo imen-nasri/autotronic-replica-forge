@@ -1,3 +1,4 @@
+
 import Header from "@/components/Header";
 import Simulator from "@/components/Simulator";
 import ServicesSection from "@/components/ServicesSection";
@@ -46,7 +47,7 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href="tel:0629631976"
-              className="inline-block bg-primaryRed rounded-lg px-8 py-4 text-white text-xl font-black shadow-xl hover:bg-red-600 transition-all duration-300 hover:scale-105 text-center"
+              className="inline-block bg-primaryRed rounded-lg px-8 py-4 text-white text-xl font-black shadow-xl hover:bg-yellow-600 transition-all duration-300 hover:scale-105 text-center"
             >
               📞 06 29 63 19 76
             </a>
