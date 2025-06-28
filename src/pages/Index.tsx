@@ -1,6 +1,9 @@
+
 import Header from "@/components/Header";
 import Simulator from "@/components/Simulator";
 import ServicesSection from "@/components/ServicesSection";
+import ProgrammationSection from "@/components/ProgrammationSection";
+import ReparationSection from "@/components/ReparationSection";
 import BenefitsSection from "@/components/BenefitsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import AboutSection from "@/components/AboutSection";
@@ -25,21 +28,21 @@ const Index = () => {
         {/* LEFT: Title and CTA */}
         <div className="flex-1 max-w-2xl px-6 lg:px-12 z-10">
           <div className="inline-flex items-center bg-primaryRed/10 text-primaryRed px-4 py-2 rounded-full text-sm font-semibold mb-6 backdrop-blur-sm border border-primaryRed/20">
-            ⚡ Spécialiste depuis 15 ans
+            ⚡ Vous conduisez, nous optimisons
           </div>
           <h1 className="text-4xl lg:text-6xl font-black text-white mb-6 leading-tight drop-shadow-lg">
-            Autotronic performance,{" "}
+            Autotronic Performance,{" "}
             <span className="block text-primaryRed bg-white/90 px-4 py-2 inline-block transform -rotate-1 shadow-lg rounded-lg">
               spécialiste
             </span>
             <span className="block mt-2">
-              reprogrammation moteur à Sainte Geneviève (91)
+              reprogrammation et réparation automobile
             </span>
           </h1>
           <p className="text-xl lg:text-2xl text-white font-semibold mb-8 leading-relaxed drop-shadow-md">
-            Plus de 15 ans d'expérience dans la reprogrammation moteur.
+            Spécialisés dans la réparation, l'entretien et la reprogrammation de tout type de véhicule.
             <br />
-            <span className="text-gray-200">Gagnez en puissance et économisez du carburant.</span>
+            <span className="text-gray-200">Plus de puissance, moins de consommation.</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
@@ -49,7 +52,7 @@ const Index = () => {
               📞 06 29 63 19 76
             </a>
             <a
-              href="#services"
+              href="#programmation"
               className="inline-block bg-white/90 backdrop-blur-sm border-2 border-white text-gray-900 rounded-lg px-8 py-4 text-xl font-black hover:bg-white hover:scale-105 transition-all duration-300 text-center"
             >
               Nos Services
@@ -65,6 +68,12 @@ const Index = () => {
 
       {/* SERVICES SECTION */}
       <ServicesSection />
+
+      {/* PROGRAMMATION SECTION */}
+      <ProgrammationSection />
+
+      {/* REPARATION SECTION */}
+      <ReparationSection />
 
       {/* BENEFITS SECTION */}
       <BenefitsSection />

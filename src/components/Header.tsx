@@ -5,11 +5,9 @@ import Logo from "./Logo";
 
 const menuItems = [
   { label: "ACCUEIL", link: "#" },
-  { label: "SERVICES", link: "#services", dropdown: ["Reprogrammation Moteur", "Conversion E85", "Suppression FAP/AdBlue", "Diagnostic Auto"] },
-  { label: "AVANTAGES", link: "#benefits" },
-  { label: "TÉMOIGNAGES", link: "#testimonials" },
-  { label: "À PROPOS", link: "#about" },
-  { label: "CONTACT", link: "#contact" }
+  { label: "PROGRAMMATION", link: "#programmation", dropdown: ["Reprogrammation Moteur", "Stage 1 & Stage 2", "Conversion E85", "Gestion Moteur"] },
+  { label: "RÉPARATION", link: "#reparation", dropdown: ["Réparation Moteur", "Réparation Calculateur", "Solution FAP/EGR", "Diagnostic Auto"] },
+  { label: "LOCALISATION", link: "#contact" }
 ];
 
 const Header = () => {
@@ -32,7 +30,7 @@ const Header = () => {
                 <ul className="absolute left-0 mt-2 hidden group-hover:block bg-white text-primaryRed font-bold rounded-lg shadow-2xl z-40 min-w-[240px] border-t-4 border-primaryRed">
                   {item.dropdown.map((sub: string) => (
                     <li key={sub}>
-                      <a href="#services" className="block px-6 py-3 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg">{sub}</a>
+                      <a href={item.link} className="block px-6 py-3 hover:bg-gray-100 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg">{sub}</a>
                     </li>
                   ))}
                 </ul>
@@ -83,7 +81,7 @@ const Header = () => {
                       {item.dropdown.map((sub: string) => (
                         <li key={sub}>
                           <a
-                            href="#services"
+                            href={item.link}
                             className="block text-white/80 py-2 px-4 text-sm hover:bg-white/10 rounded"
                             onClick={() => setMobileMenuOpen(false)}
                           >
